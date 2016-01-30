@@ -2,7 +2,7 @@
 Track dimension changes of DOM objects.
 
 #####How to use
-######Without requirejs
+##### Without requirejs
 1. Include resize-spy-bare.js in your HTML document (preferably just before </body> tag)
 
   ```<script src='resize-spy.js'></script>```
@@ -17,7 +17,7 @@ via parameters
     console.log('I have been resized!');
   });
   ```
-#####With requirejs
+##### With requirejs
 1. Put resize-spy.js into your project directory
 2. Load as a module resize-spy
   ```
