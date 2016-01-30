@@ -17,6 +17,7 @@ via parameters
     console.log('I have been resized!');
   });
   ```
+  
 ##### With requirejs
 1. Put resize-spy.js into your project directory
 2. Load as a module resize-spy
