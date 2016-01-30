@@ -5,29 +5,35 @@
  * Author:  Lukas Valatka
  * Website: www.valatka.net
  */
+define(function() {
+  var trackResize = function(object, callbackFn) {
+    var resizeEvent = new CustomEvent('elResize');
+    var element     = object;
+    var prevWidth   = element.getBoundingClientRect().width;
+    var prevHeight  = element.getBoundingClientRect().height;
 
-function ResizeSpy(object, callbackFn) {
-  var resizeEvent = new CustomEvent('elResize');
-  var element     = object;
-  var prevWidth   = element.getBoundingClientRect().width;
-  var prevHeight  = element.getBoundingClientRect().height;
-  
-  setInterval(function() {
+    setInterval(function() {
     trackUpdate();
-  }, 50);
+    }, 50);
 
-  var trackUpdate = function() {
+    var trackUpdate = function() {
+      elementWidth  = element.getBoundingClientRect().width;
+      elementHeight = element.getBoundingClientRect().height;
 
-    elementWidth  = element.getBoundingClientRect().width;
-    elementHeight = element.getBoundingClientRect().height;
+      if (elementWidth != prevWidth || elementHeight != prevHeight) {
+        element.dispatchEvent(resizeEvent);
+        callbackFn();
+      }
 
-    if (elementWidth != prevWidth || elementHeight != prevHeight) {
-      element.dispatchEvent(resizeEvent);
-      callbackFn();
-    }
+      prevWidth  = elementWidth;
+      prevHeight = elementHeight;
+      };
+    };
 
-    prevWidth  = elementWidth;
-    prevHeight = elementHeight;
+  return {
+    trackResize: trackResize
   };
+});
 
-}
+
+
