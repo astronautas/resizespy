@@ -2,7 +2,8 @@
 Track dimension changes of DOM objects.
 
 #####How to use
-1. Include resize-spy.js in your HTML document (preferably just before </body> tag)
+######Without requirejs
+1. Include resize-spy-bare.js in your HTML document (preferably just before </body> tag)
 
   ```<script src='resize-spy.js'></script>```
 
@@ -16,6 +17,15 @@ via parameters
     console.log('I have been resized!');
   });
   ```
+#####With requirejs
+1. Put resize-spy.js into your project directory
+2. Load as a module resize-spy
+  ```
+  define(['resize-spy'], function(ResizeSpy)) {
+
+  }
+  ```
+3. To track objects, use ResizeSpy.trackResize(object, callbackFunction) syntax
 
 #####What about .resize?
 It only works on window object. Other DOM objects such as body or some other elements
