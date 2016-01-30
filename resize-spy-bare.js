@@ -5,36 +5,29 @@
  * Author:  Lukas Valatka
  * Website: www.valatka.net
  */
-if (typeof require === "function" && typeof require.specified === "function") {
-  define(function() {
-    var trackResize = function(object, callbackFn) {
-      var resizeEvent = new CustomEvent('elResize');
-      var element     = object;
-      var prevWidth   = element.getBoundingClientRect().width;
-      var prevHeight  = element.getBoundingClientRect().height;
 
-      setInterval(function() {
-      trackUpdate();
-      }, 50);
+function ResizeSpy (object, callbackFn) {
+  var resizeEvent = new CustomEvent('elResize');
+  var element     = object;
+  var prevWidth   = element.getBoundingClientRect().width;
+  var prevHeight  = element.getBoundingClientRect().height;
 
-      var trackUpdate = function() {
-        elementWidth  = element.getBoundingClientRect().width;
-        elementHeight = element.getBoundingClientRect().height;
+  setInterval(function() {
+  trackUpdate();
+  }, 50);
 
-        if (elementWidth != prevWidth || elementHeight != prevHeight) {
-          element.dispatchEvent(resizeEvent);
-          callbackFn();
-        }
+  var trackUpdate = function() {
+    elementWidth  = element.getBoundingClientRect().width;
+    elementHeight = element.getBoundingClientRect().height;
 
-        prevWidth  = elementWidth;
-        prevHeight = elementHeight;
-        };
-      };
+    if (elementWidth != prevWidth || elementHeight != prevHeight) {
+      element.dispatchEvent(resizeEvent);
+      callbackFn();
+    }
 
-    return {
-      trackResize: trackResize
-    };
-  });  
+    prevWidth  = elementWidth;
+    prevHeight = elementHeight;
+  };
 }
 
 
